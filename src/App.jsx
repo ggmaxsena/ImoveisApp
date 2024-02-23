@@ -1,24 +1,33 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Form, Input, Button, ErrorMessage } from 'vito-react';
 
-function App() {
+const MyForm = () => {
+  const handleSubmit = (values) => {
+    console.log('Form submitted:', values);
+    // handle form submission here
+  };
+
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>Choo Choo! This is an example of a Vite + React app running on Railway.</p>
-      </div>
-    </>
-  )
-}
+    <Form onSubmit={handleSubmit}>
+      <Input
+        name="name"
+        label="Name"
+        required
+        minLength={3}
+      />
+      <ErrorMessage name="name" />
 
-export default App
+      <Input
+        name="email"
+        label="Email"
+        type="email"
+        required
+      />
+      <ErrorMessage name="email" />
+
+      <Button type="submit">Submit</Button>
+    </Form>
+  );
+};
+
+export default MyForm;
